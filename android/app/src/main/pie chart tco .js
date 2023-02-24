@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, processColor,SafeAreaView, TouchableOpacity, Image, StyleSheet, Alert, TextInput, ScrollView, ImageBackground, BackHandler, ToastAndroid, KeyboardAvoidingView,Modal } from 'react-native';
+import { View, Text, processColor,SafeAreaView, TouchableOpacity, Image, StyleSheet, Alert, TextInput, ScrollView, ImageBackground, BackHandler, ToastAndroid, KeyboardAvoidingView,Modal, Button } from 'react-native';
 import { ProgressDialogs } from '../../utils/ProgressDialogs';
 import { PieChart } from "react-native-charts-wrapper";
 
@@ -41,8 +41,9 @@ class PieChartTco extends Component {
                   valueTextColor: processColor("transparent"),
                   sliceSpace: 3,
                   selectionShift: 13,
-                  // xValuePosition: "OUTSIDE_SLICE",
-                  // yValuePosition: "OUTSIDE_SLICE",
+                  
+                  xValuePosition: "OUTSIDE_SLICE",
+                  yValuePosition: "OUTSIDE_SLICE",
                   valueFormatter: "#.#'%'",
                   valueLineColor: processColor("green"),
                   valueLinePart1Length: 0.5,
@@ -160,7 +161,7 @@ class PieChartTco extends Component {
                                 <TouchableOpacity onPress={(evt) => this.handlePress(evt) }>
                               <View
                                 style={{
-                                  flexDirection: "column",
+                                  // flexDirection: "column",
                                   marginTop: 15,
                                   height: "95%",
                                   width: "100%",
@@ -176,7 +177,8 @@ class PieChartTco extends Component {
                                   console.log('Modal has been closed.');
                                 }}>
                                 {this.state.selectedSliceDataVisibility?
-                                <View style={{height:'90%', width:'100%',}}>
+                                <View 
+                                style={{height:'90%', width:'100%',marginTop:50}}>
                                 <TouchableOpacity 
                                 onPress={() => 
                                   this.setState({
@@ -185,18 +187,20 @@ class PieChartTco extends Component {
                                     })
                                 
                                 }
-                                style={{height:'100%',width:'100%', backgroundColor:'#fff',opacity:0.1,position:'absolute'}}/>
+                                style={{height:'100%',width:'100%', backgroundColor:'#fff',opacity:0.5}}/>
                                 <View
                                   style={{borderColor:'green',borderWidth:1,borderRadius:5,
                                     backgroundColor: '#fff',
-                                    top:this.state.ycoordinate+100,
-                                    left:this.state.xcoordinate-10,
+                                    top:this.state.ycoordinate,
+                                    left:this.state.xcoordinate,
                                     position:'absolute',
-                                    minWidth:70,
+                                    paddingHorizontal:10,
+                                        paddingVertical:5
+                                    // minWidth:70,
                                   }}>
                                   
                                   <Text style={{color:'black',fontSize:10}}>{this.state.sliceName}</Text>
-                                  <Text style={{color:'black',fontSize:12,fontWeight:'bold'}}>{this.state.sliceValue+' %'}</Text>
+                                  <Text style={{color:'black',fontSize:12,fontWeight:'bold'}}>{this.state.sliceValue}</Text>
                                 </View>
                                 </View>
                               :null}
@@ -207,12 +211,19 @@ class PieChartTco extends Component {
                                   style={{ justifyContent: "center", marginTop: 50, height: "60%" }}
                                 >
                                   
-                                  {!this.state.noData ? (
+                                
                                 <PieChart
                                   style={{
                                       height:'100%',
                                       width:'95%'}}
                                   logEnabled={false}
+                                  animation={
+                                    { durationX : 3000,
+                                     durationY : 3000,
+                                     easingX: 'Linear',
+                                     easingY: 'Linear',
+                                   }
+                                     }
                                   data={this.state.data}
                                   legend={this.state.legend}
                                   chartDescription={this.state.description}
@@ -222,22 +233,22 @@ class PieChartTco extends Component {
                                   entryLabelFontFamily={'HelveticaNeue-Medium'}
                                   drawEntryLabels={false}
                                   rotationEnabled={true}
-                                  rotationAngle={45}
+                                  // rotationAngle={45}
                                   description={{text:'Hello Uncle'}}
                                   usePercentValues={false}
-                                  styledCenterText={{text:'', color: processColor('blue'), fontFamily: 'OpenSans',fontWeight:'bold', size:25}}
-                                  centerTextRadiusPercent={10}
-                                  holeRadius={0}
-                                  holeColor={processColor('red')}
+                                  // styledCenterText={{text:'', color: processColor('blue'), fontFamily: 'OpenSans',fontWeight:'bold', size:25}}
+                                  // centerTextRadiusPercent={10}
+                                  holeRadius={10}
+                                  // holeColor={processColor('red')}
                                   transparentCircleRadius={10}
-                                  transparentCircleColor={processColor('#f0f0f088')}
-                                  maxAngle={360}
+                                  transparentCircleColor={processColor('darkorange')}
+                                  maxAngle={362}
                                   onSelect={this.handleSelect.bind(this)}
                                   onChange={(event) => console.log(event.nativeEvent)}
                                 />
-                                  ) : <TextInput
-                                  value={'hello'}
-                                  />}
+
+                                <Button title='Move to Drawer' onPress={()=>this.props.navigation.navigate('DrawerNavigation')} />
+                                  
                                 </View>
                       
                       
