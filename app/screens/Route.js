@@ -4,7 +4,7 @@ import React from 'react'
 const Route = () => {
   return (
     <View>
-      <Text>Route</Text>
+      <Text style={{textAlignVertical:'center'}}>Route</Text>
     </View>
   )
 }

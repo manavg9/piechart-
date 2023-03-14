@@ -218,8 +218,8 @@ class PieChartTco extends Component {
                                       width:'95%'}}
                                   logEnabled={false}
                                   animation={
-                                    { durationX : 3000,
-                                     durationY : 3000,
+                                    { durationX : 500,
+                                     durationY : 500,
                                      easingX: 'Linear',
                                      easingY: 'Linear',
                                    }

@@ -11,12 +11,15 @@ import NotificationsScreen from './app/screens/NotificationsScreen';
 import DrawerNavigation from './app/navigation/DrawerNavigation';
 import BottomTabNavigation from './app/navigation/BottomTabNavigation';
 
+
 const App = () => {
 
 const Stack = createStackNavigator();
   
 
   return (
+
+
      <NavigationContainer>
       <Stack.Navigator
       initialRouteName="Home"
@@ -27,11 +30,9 @@ const Stack = createStackNavigator();
         <Stack.Screen name="PieChart" component={PieChartTco} />
         <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
         <Stack.Screen name="BottomTabNavigation" component={BottomTabNavigation} />
-
-
-
         
-    
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )
